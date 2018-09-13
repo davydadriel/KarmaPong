@@ -30,25 +30,40 @@ function keyUp(e){
 function gameLoop(){
    // console.log('o jogo tá rodando');
 
-   //desenhar Jogador
+   //mover Jogador
     if (teclaCimaPressionada!=teclaBaixoPressionada) { // se o jogador estiver pressionando a tecla baixo ou cima
         if (teclaCimaPressionada) { // se for para cima...
                 if (jogadorPosY > 0) { // se não sair da tela...
-                        jogadorPosY -= velocidadeJogador;// muda a posição
+                        //jogadorPosY -= velocidadeJogador;// muda a posição
                 }
         }
         else { // se for para baixo...
                 if (jogadorPosY < (canvas.height - barraHeight)) {// se não sair da tela...
-                        jogadorPosY += velocidadeJogador;// muda a posição
+                        //jogadorPosY += velocidadeJogador;// muda a posição
                 }
         }
     }
+
+   //mover Oponente
+    if (teclaCimaPressionada!=teclaBaixoPressionada) { // se o jogador estiver pressionando a tecla baixo ou cima
+        if (teclaCimaPressionada) { // se for para cima...
+                if (oponentePosY > 0) { // se não sair da tela...
+                    oponentePosY -= velocidadeOponente;// muda a posição
+                }
+        }
+        else { // se for para baixo...
+                if (oponentePosY < (canvas.height - barraHeight)) {// se não sair da tela...
+                    oponentePosY += velocidadeOponente;// muda a posição
+                }
+        }
+    }    
 
     // Desenha tudo na tela
     context.clearRect(0, 0, canvas.width, canvas.height);// limpa a tela antes de desenhar
 
     // Jogador
     context.fillRect(jogadorPosX, jogadorPosY, barraWidth, barraHeight);//desenha jogador
+    context.fillRect(oponentePosX, oponentePosY, barraWidth, barraHeight);//desenha oponente
 
     // Bola
     context.beginPath();// inicia o modo de desenho
@@ -128,9 +143,9 @@ function gameLoop(){
     
     
 
-
 //console.log("Velocidade do jogador: "+velocidadeJogador);
-console.log("Teclas cima: "+teclaCimaPressionada+" baixo: "+teclaBaixoPressionada+"\n pontuação player1: "+pontosOponente+"\n pontuação player2: "+pontosJogador);
+//console.log("Velocidade do oponente: "+velocidadeOponente);
+console.log("Teclas cima: "+teclaCimaPressionada+" baixo: "+teclaBaixoPressionada+"\n pontuação player1: "+pontosJogador+"\n pontuação player2: "+pontosOponente);
 }
 
 
@@ -147,10 +162,15 @@ function jogo(){
     barraWidth = 30;
     barraHeight = 90;
 
-    //dados jogador
+    //dados jogadores
     jogadorPosX = 0;
     jogadorPosY = (canvas.height - barraHeight) / 2;
     velocidadeJogador = 15;
+
+    oponentePosY = (canvas.height - barraHeight) / 2;
+    oponentePosX = canvas.width - barraWidth;
+    velocidadeOponente = 15;
+
 
     //dados bola
     bolaRaio = 10;
@@ -159,13 +179,9 @@ function jogo(){
     bolaParaDireita = false; // decide por onde a bola deve começar
     bolaAngulo = Math.floor(Math.random() * 21) - 10;
     bolaTempo = 0;
-    velocidadeBola = 15;
+    velocidadeBola = 7;
 
-
-    setInterval(gameLoop, 30);// chama a function gameLoop a cada 30 frames
-
-    
-    
+    setInterval(gameLoop, 30);// chama a function gameLoop a cada 30 frames 
 }
 
 function init() {

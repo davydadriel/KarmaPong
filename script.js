@@ -90,7 +90,7 @@ function gameLoop(){
                 if (teclaCimaPressionada) {// se o jogador estiver indo para cima quando tocar na bola...
                     bolaAngulo = Math.floor(Math.random() * 10) - 9;// mandamos a bola na diagonal pra cima
                 }
-                else {// se o jogador estiver indo para baixo quando tocar na bola...
+                else {// se o jogador estiver indo para baixo quando tocar na bola..
                     bolaAngulo = Math.floor((Math.random() * 10));// mandamos a bola na diagonal pra baixo
                 }                        
             }                    
